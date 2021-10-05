@@ -1,45 +1,24 @@
-const initialState = {
-  
-    categories: [
-        {
-            name:'ELECTRONICS',
-            displayName: 'ELECTRONICS',
-            description:'CATEGORY OF ALL THE ELECTRONIC DEVICES' 
-        }, 
-        { 
-            name:'FOOD',
-            displayName: 'FOOD',
-            description:'CATEGORY OF ALL THE FOOD TYPES'
-        }
-    ],
-    activeCategory: {},
-  }
-  
-  export default (state = initialState, action) => {
+let initialState = {
+  categories: [],
+  products: [],
+  activeCategory: ''
+};
 
-    const { payload, type } = action;
-    switch (type) {
-      case 'ACTIVE_CATEGORY':
-        let activate = {};
-  
-        state.categories.map(item => {
-          if (item.name === payload) {
-            activate = item;
-          }
-        });
-        return {
-          categories: state.categories,
-          activeCategory: activate
-        };
+// reducer
+export default (state = initialState, action) => {
+  const { type, payload } = action;
+  switch (type) {
+      case 'GET':
+          return { ...state, categories: payload.categories, products: payload.products, activeCategory: "electronics" };
+      case "activeCategory":
+          return { ...state, activeCategory: payload }
+      case "ADDTOCART":
+          return { ...state, categories: payload.categories, products: payload.products, }
+      case "REMOVEFROMCART":
+          return;
+      case 'PUT':
+          return payload;
       default:
-        return state;
-    }
-}
-  
-  
-export function active(name) {
-    return {
-      type: 'ACTIVE_CATEGORY',
-      payload: name
-    }
+          return state;
+  }
 }

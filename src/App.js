@@ -1,24 +1,18 @@
-import React,{useState} from 'react';
-import Header from './components/header';
-import Footer from './components/footer';
-import Product from './components/product';
-import Categories from './components/Categories';
-import AddToCart from './components/addToCart';
-import 'bootstrap/dist/css/bootstrap.min.css';
-export default function App (props){
-    const [cartList, setCartList] = useState(false);
-    function handleShow(){
-        setCartList(!cartList);
-    }
-    return (
-        <>
-            <Header show={handleShow}/>
-            {
-                cartList && <AddToCart/>
-            }
-            <Categories/>
-            <Product/>
-            <Footer/>
-        </>
-    )
-} ;
+import './App.css';
+import React from 'react';
+
+import Header from "./components/header";
+import Footer from "./components/footer";
+
+import Products from "./components/product";
+function App () {
+  return (
+    <>
+      <Header />
+     <Products/>
+      <Footer />
+    </>
+  );
+}
+
+export default App;
